@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Number Pairs</title>
+</head>
+<body>
+<label for="soNguyen">You want to input more elements? </label>
+<input type="number" id="soNguyen" name="soNguyen">
+<button onclick="insertVal()">Insert this element</button>
+
+<label for="soCanChia">Divide by (default is 5): </label>
+<input type="number" id="soCanChia" name="soCanChia" value="5">
+<button onclick="updatePairs()">Find pairs</button>
+
+<p id="result">Default Array: 1, 2, 3, 4, 5, 6</p>
+<p id="pairsResult">Pairs that sum up to be divisible by 5: </p>
+
+<script>
+    // Create a default array
+    let soNguyen = [1, 2, 3, 4, 5, 6];
+    let soCanChia = 5;
+
+    // Function to insert a value into the array
+    function insertVal() {
+        if (soNguyen.length >= 50) {
+            alert("The limit of this array is 50");
+            return;
+        }
+        let inputField = document.getElementById('soNguyen');
+        let soCanThem = inputField.valueAsNumber;
+        if (!isNaN(soCanThem)) {
+            soNguyen.push(soCanThem);
+            document.getElementById('result').textContent = "Current Array: " + soNguyen.join(', ');
+            inputField.value = "";
+            updatePairs();
+        } else {
+            alert("Please enter a valid number.");
+        }
+    }
+    function updatePairs() {
+        let inputDivisor = document.getElementById('soCanChia').valueAsNumber;
+        if (!isNaN(inputDivisor) && inputDivisor > 0) {
+            soCanChia = inputDivisor;
+        } else {
+            alert("Please enter a valid divisor (greater than 0).");
+            return;
+        }
+
+        let capSo = [];
+        for (let i = 0; i < soNguyen.length; i++) {
+            for (let j = i + 1; j < soNguyen.length; j++) {
+                if ((soNguyen[i] + soNguyen[j]) % soCanChia === 0) {
+                    capSo.push("( " + soNguyen[i] + ", " + soNguyen[j] + " )");
+                }
+            }
+        }
+
+        document.getElementById('pairsResult').textContent =
+            "Pairs that sum up to be divisible by " + soCanChia + ": " + (capSo.length > 0 ? capSo.join(', ') : "None found");
+    }
+
+    updatePairs();
+</script>
+</body>
+</html>

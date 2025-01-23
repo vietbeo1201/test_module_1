@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài Tập 2  </title>
+</head>
+<body>
+<script>
+    soDiem = +prompt("enter student score here (score between 0 and 100):")
+    if (soDiem >= 0 && soDiem <= 100) {
+        if (soDiem < 50){
+            document.write("Student have been fail the the exam (score lower than 50)")
+        } else {
+            if (soDiem % 5 == 3 ) {
+                soDiem = soDiem + 2
+                document.write("the score after accomplish is: " + soDiem)
+            } else if (soDiem % 5 == 4) {
+                soDiem = soDiem + 1
+                document.write("the score after accomplish is: " + soDiem)
+            } else {
+                document.write("this score can not be accomplish!")
+            }
+
+        }
+    } else {
+        alert("the score between 0 and 100!")
+    }
+</script>
+</body>
+</html>
